@@ -135,4 +135,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 stagger: { each: 0.15, from: "random" }
             }, "ambiente");
     }
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.15, // Trigger when 15% of the element is visible
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
 });
