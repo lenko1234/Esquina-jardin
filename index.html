@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero Esquina Jardín | Naturaleza en Casa</title>
+    <meta name="description"
+        content="Vivero Esquina Jardín - Plantas, Macetas, Tierra y todo para tus mascotas en Concepción del Uruguay.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Qué Ofrecemos</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#contacto" class="btn-nav">Contactar</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="#" class="logo"><i class="fa-solid fa-leaf"></i></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="animation-container">
+                <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <path id="hoja-fina" d="M0,0 Q8,-20 20,-15 T35,-5 Q20,10 5,5 T0,0 Z" />
+                        <path id="flor-simple"
+                            d="M0,0 C-5,-10 5,-10 0,0 C10,-5 10,5 0,0 C5,10 -5,10 0,0 C-10,5 -10,-5 0,0 Z" />
+                        <text id="texto-base" x="50%" y="130" dominant-baseline="middle" text-anchor="middle"
+                            class="estilo-texto">Esquina Jardín</text>
+                        <mask id="mascara-entrelazado">
+                            <rect width="100%" height="100%" fill="black" />
+                            <rect x="130" y="80" width="140" height="80" fill="white" />
+                            <rect x="360" y="80" width="90" height="80" fill="white" />
+                            <rect x="540" y="80" width="80" height="80" fill="white" />
+                        </mask>
+                    </defs>
+                    <use href="#texto-base" />
+                    <path id="tallo-principal" class="tallo-enredadera"
+                        d="M50,150 C100,150 120,90 200,100 S300,140 380,110 S500,80 600,120" />
+                    <g id="grupo-hojas"></g>
+                    <use href="#flor-simple" x="600" y="120" class="flor" width="25" height="25" />
+                    <use href="#texto-base" mask="url(#mascara-entrelazado)" />
+                </svg>
+            </div>
+            <p>Transforma tu hogar con nuestras plantas, macetas y todo lo que necesitas para tu jardín y tus mascotas.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/543442401165" target="_blank" class="btn btn-primary"><i
+                        class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp</a>
+                <a href="#ubicacion" class="btn btn-secondary">Ver Ubicación</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Todo lo que buscas</h2>
+                <p>Encontrá variedad y calidad para tu espacio verde y tus amigos peludos.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3>Plantas</h3>
+                    <p>Variedad de plantas de interior y exterior para dar vida a tus espacios.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-bucket"></i>
+                    </div>
+                    <h3>Macetas</h3>
+                    <p>Diseños modernos y clásicos para resaltar la belleza de tus plantas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-mound"></i>
+                    </div>
+                    <h3>Tierra</h3>
+                    <p>Sustratos de calidad para asegurar el crecimiento saludable.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <h3>Mascotas</h3>
+                    <p>Todo para tus mascotas. Porque ellos también son parte de la familia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location/Info Section -->
+    <section id="ubicacion" class="info-section">
+        <div class="container info-container">
+            <div class="info-text">
+                <h2>Visítanos</h2>
+                <p>Estamos en el corazón de Concepción del Uruguay. Vení a conocer nuestro local y llevate lo mejor para
+                    tu jardín.</p>
+
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Dirección</strong>
+                            <span>9 de julio 1349, Concepción del Uruguay</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Teléfono</strong>
+                            <span>3442 401165</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="info-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.687647226685!2d-58.23586822468273!3d-32.48815897379854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b2e1e428555555%3A0x0!2s9%20de%20Julio%201349%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses!2sar!4v1701390000000!5m2!1ses!2sar"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>Esquina Jardín</h3>
+                <p>Naturaleza en Casa</p>
+            </div>
+            <div class="footer-hours">
+                <h4>Horario de Verano ☀️</h4>
+                <div class="hours-block">
+                    <strong>Lunes a Viernes</strong>
+                    <span>8:30 a 13:00 hs | 16:30 a 20:30 hs</span>
+                </div>
+                <div class="hours-block">
+                    <strong>Sábado</strong>
+                    <span>9:00 a 13:30 hs | 16:30 a 20:30 hs</span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/viveroesquinajardin/" target="_blank" aria-label="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/543442401165" target="_blank" aria-label="WhatsApp"><i
+                        class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Vivero Esquina Jardín. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
