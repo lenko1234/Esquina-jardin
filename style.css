@@ -184,6 +184,19 @@ img {
     letter-spacing: 0px;
 }
 
+.letra-e {
+    text-shadow: var(--sombra-e, none);
+}
+
+.letra-resto {
+    text-shadow: var(--sombra-resto, none);
+}
+
+.texto-con-sombra {
+    --sombra-e: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    --sombra-resto: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
 .tallo-enredadera {
     fill: none;
     stroke: #A5D6A7;
@@ -668,5 +681,59 @@ footer::before {
         width: 50px;
         height: 50px;
         font-size: 25px;
+    }
+}
+
+/* Floating Instagram Button */
+.instagram-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    /* Start at same position as WhatsApp */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    /* Below WhatsApp */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+}
+
+.instagram-float:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.instagram-float.visible {
+    right: 120px;
+    /* 40px (right) + 60px (width) + 20px (gap) */
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+    .instagram-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+
+    .instagram-float.visible {
+        right: 85px;
+        /* 20px + 50px + 15px gap */
     }
 }

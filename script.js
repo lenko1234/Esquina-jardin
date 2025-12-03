@@ -155,4 +155,24 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
+
+    // Instagram Float Logic
+    const footer = document.getElementById('contacto');
+    const instaFloat = document.querySelector('.instagram-float');
+
+    if (footer && instaFloat) {
+        window.addEventListener('scroll', () => {
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Trigger when the footer enters the viewport (minus a small buffer for the button)
+            // The button is at bottom: 40px. 
+            // We want it to appear when the green zone is behind it.
+            if (footerRect.top < windowHeight - 20) {
+                instaFloat.classList.add('visible');
+            } else {
+                instaFloat.classList.remove('visible');
+            }
+        });
+    }
 });

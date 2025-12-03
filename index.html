@@ -50,12 +50,12 @@
                         <path id="flor-simple"
                             d="M0,0 C-5,-10 5,-10 0,0 C10,-5 10,5 0,0 C5,10 -5,10 0,0 C-10,5 -10,-5 0,0 Z" />
                         <text id="texto-base" x="50%" y="130" dominant-baseline="middle" text-anchor="middle"
-                            class="estilo-texto">Esquina Jardín</text>
+                            class="estilo-texto">
+                            <tspan class="letra-e"></tspan>E</tspan>
+                            <tspan class="letra-resto">squina Jardín</tspan>
+                        </text>
                         <mask id="mascara-entrelazado">
-                            <rect width="100%" height="100%" fill="black" />
-                            <rect x="130" y="80" width="140" height="80" fill="white" />
-                            <rect x="360" y="80" width="90" height="80" fill="white" />
-                            <rect x="540" y="80" width="80" height="80" fill="white" />
+                            <rect width="100%" height="100%" fill="white" />
                         </mask>
                     </defs>
                     <use href="#texto-base" />
@@ -63,7 +63,7 @@
                         d="M50,150 C100,150 120,90 200,100 S300,140 380,110 S500,80 600,120" />
                     <g id="grupo-hojas"></g>
                     <use href="#flor-simple" x="600" y="120" class="flor" width="25" height="25" />
-                    <use href="#texto-base" mask="url(#mascara-entrelazado)" />
+                    <use href="#texto-base" mask="url(#mascara-entrelazado)" class="texto-con-sombra" />
                 </svg>
             </div>
             <p>Transforma tu hogar con nuestras plantas, macetas y todo lo que necesitas para tu jardín y tus mascotas.
@@ -184,8 +184,7 @@
                 </div>
             </div>
             <div class="social-links">
-                <a href="https://www.instagram.com/viveroesquinajardin/" target="_blank" aria-label="Instagram"><i
-                        class="fa-brands fa-instagram"></i></a>
+
             </div>
         </div>
         <div class="footer-bottom">
@@ -195,6 +194,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
+    <a href="https://www.instagram.com/viveroesquinajardin/" class="instagram-float" target="_blank"
+        aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
     <a href="https://wa.me/543442401165" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
