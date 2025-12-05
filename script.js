@@ -175,4 +175,142 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Product Modal Logic
+    const productImages = {
+        'Plantas': [
+            'WhatsApp Image 2025-12-04 at 8.33.09 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (2).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (3).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (2).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (3).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM.jpeg'
+        ],
+        'Macetas': [
+            'WhatsApp Image 2025-12-04 at 8.33.40 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (2).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (3).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.33.42 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.34.46 PM.jpeg'
+        ],
+        'Sustratos': [
+            'WhatsApp Image 2025-12-04 at 8.36.01 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM (2).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM.jpeg'
+        ],
+        'Mascotas': [
+            'WhatsApp Image 2025-12-04 at 8.32.36 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.36 PM.jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (1).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (2).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (3).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (4).jpeg',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM.jpeg'
+        ]
+    };
+
+    // Create Modal Elements
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.innerHTML = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Galería</h3>
+                <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-grid"></div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modalOverlay);
+
+    // Create Lightbox Elements
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+        <button class="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+        <img src="" alt="Full view" class="lightbox-img">
+    `;
+    document.body.appendChild(lightbox);
+
+    const modalGrid = modalOverlay.querySelector('.modal-grid');
+    const modalTitle = modalOverlay.querySelector('.modal-title');
+    const modalCloseBtn = modalOverlay.querySelector('.modal-close');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCloseBtn = lightbox.querySelector('.lightbox-close');
+
+    // Open Modal
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.getAttribute('data-category');
+            if (!category || !productImages[category]) return;
+
+            modalTitle.textContent = category;
+            modalGrid.innerHTML = '';
+
+            productImages[category].forEach((img, index) => {
+                const container = document.createElement('div');
+                container.className = 'modal-image-container';
+                container.style.animationDelay = `${index * 0.05}s`;
+
+                const image = document.createElement('img');
+                image.src = `assets/${category}/${img}`;
+                image.className = 'modal-image';
+                image.loading = 'lazy';
+
+                container.appendChild(image);
+                modalGrid.appendChild(container);
+
+                // Lightbox click
+                container.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = image.src;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close Modal
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+
+    // Close Lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+    }
+
+    lightboxCloseBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (lightbox.classList.contains('active')) {
+                closeLightbox();
+            } else if (modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        }
+    });
+
 });
