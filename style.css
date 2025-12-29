@@ -81,6 +81,12 @@ img {
     gap: 0.5rem;
 }
 
+.logo-img {
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
