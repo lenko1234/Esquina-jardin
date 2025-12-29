@@ -69,11 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const numeroHojas = 14;
         const isMobile = window.innerWidth < 768;
 
+        const fragment = document.createDocumentFragment();
+        const hojasData = [];
+
         for (let i = 1; i < numeroHojas; i++) {
             const porcentaje = i / numeroHojas;
             const punto = tallo.getPointAtLength(porcentaje * longitudTallo);
 
-            // Skip leaf if it covers the "E" (approximate x range 180-240)
             if (punto.x > 180 && punto.x < 240) continue;
 
             const hoja = document.createElementNS("http://www.w3.org/2000/svg", "use");
@@ -82,27 +84,33 @@ document.addEventListener('DOMContentLoaded', () => {
             hoja.setAttribute("y", punto.y);
             hoja.classList.add('hoja');
 
-            // Adjust scale for mobile but keep count
             const baseScale = isMobile ? 0.5 : 0.7;
             const randomScale = isMobile ? 0.4 : 0.6;
             const escalaFinal = baseScale + Math.random() * randomScale;
 
-            // Lógica de rotación mejorada para seguir la nueva curva
             const puntoSiguiente = tallo.getPointAtLength(Math.min(porcentaje * longitudTallo + 1, longitudTallo));
             const anguloTangente = Math.atan2(puntoSiguiente.y - punto.y, puntoSiguiente.x - punto.x) * 180 / Math.PI;
-
             const rotacionBase = (i % 2 === 0) ? -30 : 30;
 
-            gsap.set(hoja, {
-                // Rotamos la hoja basándonos en la dirección del tallo + la alternancia
+            hojasData.push({
+                el: hoja,
                 rotation: anguloTangente + rotacionBase + (Math.random() * 15 - 7.5),
-                scale: 0,
-                attr: { "data-scale": escalaFinal },
-                svgOrigin: `${punto.x} ${punto.y}` // Pivot exactly at the stem attachment point in SVG space
+                scale: escalaFinal,
+                origin: `${punto.x} ${punto.y}`
             });
 
-            grupoHojas.appendChild(hoja);
+            fragment.appendChild(hoja);
         }
+        grupoHojas.appendChild(fragment);
+
+        hojasData.forEach(data => {
+            gsap.set(data.el, {
+                rotation: data.rotation,
+                scale: 0,
+                attr: { "data-scale": data.scale },
+                svgOrigin: data.origin
+            });
+        });
 
         const tl = gsap.timeline({ delay: 0.5 });
 
@@ -161,57 +169,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const instaFloat = document.querySelector('.instagram-float');
 
     if (footer && instaFloat) {
-        window.addEventListener('scroll', () => {
-            const footerRect = footer.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            // Trigger when the footer enters the viewport (minus a small buffer for the button)
-            // The button is at bottom: 40px. 
-            // We want it to appear when the green zone is behind it.
-            if (footerRect.top < windowHeight - 20) {
-                instaFloat.classList.add('visible');
-            } else {
-                instaFloat.classList.remove('visible');
-            }
+        const instaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    instaFloat.classList.add('visible');
+                } else {
+                    instaFloat.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: "0px 0px -20px 0px"
         });
+        instaObserver.observe(footer);
     }
 
     // Product Modal Logic
     const productImages = {
         'Plantas': [
-            'WhatsApp Image 2025-12-04 at 8.33.09 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.10 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.10 PM (2).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.10 PM (3).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.10 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.11 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.11 PM (2).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.11 PM (3).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.11 PM.jpeg'
+            'WhatsApp Image 2025-12-04 at 8.33.09 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (2).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM (3).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.10 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (2).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM (3).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.11 PM.webp'
         ],
         'Macetas': [
-            'WhatsApp Image 2025-12-04 at 8.33.40 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.41 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.41 PM (2).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.41 PM (3).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.41 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.33.42 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.34.46 PM.jpeg'
+            'WhatsApp Image 2025-12-04 at 8.33.40 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (2).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM (3).webp',
+            'WhatsApp Image 2025-12-04 at 8.33.41 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.33.42 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.34.46 PM.webp'
         ],
         'Sustratos': [
-            'WhatsApp Image 2025-12-04 at 8.36.01 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.36.02 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.36.02 PM (2).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.36.02 PM.jpeg'
+            'WhatsApp Image 2025-12-04 at 8.36.01 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM (2).webp',
+            'WhatsApp Image 2025-12-04 at 8.36.02 PM.webp'
         ],
         'Mascotas': [
-            'WhatsApp Image 2025-12-04 at 8.32.36 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.36 PM.jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.37 PM (1).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.37 PM (2).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.37 PM (3).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.37 PM (4).jpeg',
-            'WhatsApp Image 2025-12-04 at 8.32.37 PM.jpeg'
+            'WhatsApp Image 2025-12-04 at 8.32.36 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.32.36 PM.webp',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (1).webp',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (2).webp',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (3).webp',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM (4).webp',
+            'WhatsApp Image 2025-12-04 at 8.32.37 PM.webp'
         ]
     };
 

@@ -8,16 +8,29 @@
     <meta name="description"
         content="Vivero Esquina Jardín - Plantas, Macetas, Tierra y todo para tus mascotas en Concepción del Uruguay.">
 
-    <!-- Google Fonts -->
+    <!-- Preconnect to external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Optimized Font Loading -->
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+            rel="stylesheet">
+    </noscript>
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Optimized Icons Loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -85,7 +98,10 @@
             </div>
             <div class="services-grid">
                 <div class="service-card reveal" data-category="Plantas">
-                    <img src="assets/image1.jpg" alt="Plantas" class="service-img">
+                    <picture>
+                        <source srcset="assets/image1.webp" type="image/webp">
+                        <img src="assets/image1.jpg" alt="Plantas" class="service-img" loading="lazy" decoding="async">
+                    </picture>
                     <div class="service-header">
                         <svg class="service-icon" viewBox="0 0 24 24">
                             <path
@@ -96,7 +112,10 @@
                     <p>Variedad de plantas de interior y exterior para dar vida a tus espacios.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.1s;" data-category="Macetas">
-                    <img src="assets/macetas.jpg" alt="Macetas" class="service-img">
+                    <picture>
+                        <source srcset="assets/macetas.webp" type="image/webp">
+                        <img src="assets/macetas.jpg" alt="Macetas" class="service-img" loading="lazy" decoding="async">
+                    </picture>
                     <div class="service-header">
                         <svg class="service-icon" viewBox="0 0 24 24">
                             <path d="M3,6H21V8H3V6M5,9H19L17.5,21H6.5L5,9Z" />
@@ -106,7 +125,11 @@
                     <p>Diseños modernos y clásicos para resaltar la belleza de tus plantas.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.2s;" data-category="Sustratos">
-                    <img src="assets/tierra.jpg" alt="Sustratos" class="service-img">
+                    <picture>
+                        <source srcset="assets/tierra.webp" type="image/webp">
+                        <img src="assets/tierra.jpg" alt="Sustratos" class="service-img" loading="lazy"
+                            decoding="async">
+                    </picture>
                     <div class="service-header">
                         <svg class="service-icon" viewBox="0 0 24 24">
                             <path
@@ -117,7 +140,10 @@
                     <p>Sustratos de calidad para asegurar el crecimiento saludable.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.3s;" data-category="Mascotas">
-                    <img src="assets/image2.jpg" alt="Mascotas" class="service-img">
+                    <picture>
+                        <source srcset="assets/image2.webp" type="image/webp">
+                        <img src="assets/image2.jpg" alt="Mascotas" class="service-img" loading="lazy" decoding="async">
+                    </picture>
                     <div class="service-header">
                         <svg class="service-icon" viewBox="0 0 24 24">
                             <path
