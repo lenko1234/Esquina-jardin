@@ -12,6 +12,150 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="assets/hero-optimized.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <!-- Critical CSS Inline -->
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-dark: #1B5E20;
+            --secondary: #66BB6A;
+            --bg-light: #F1F8E9;
+            --white: #FFF
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden
+        }
+
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background-image: url('assets/hero-optimized.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(27, 94, 32, .8), rgba(102, 187, 106, .6))
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .estilo-texto {
+            font-size: 90px;
+            fill: #FFF;
+            font-family: 'Great Vibes', cursive
+        }
+
+        .animation-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 2rem
+        }
+
+        .animation-container svg {
+            width: 100%;
+            height: auto
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none
+        }
+
+        .btn-primary {
+            background-color: #fff;
+            color: var(--primary)
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: .9
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        @media(max-width:768px) {
+            .hero {
+                background-image: url('assets/hero-mobile.webp')
+            }
+
+            .estilo-texto {
+                font-size: 50px
+            }
+        }
+    </style>
+
+    <!-- Main Stylesheet - deferred -->
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="style.css">
+    </noscript>
 
     <!-- Optimized Font Loading -->
     <link rel="preload"
@@ -29,9 +173,6 @@
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
-
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -218,8 +359,8 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="script.js" defer></script>
     <a href="https://www.instagram.com/viveroesquinajardin/" class="instagram-float" target="_blank"
         aria-label="Instagram">
         <i class="fa-brands fa-instagram"></i>
